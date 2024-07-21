@@ -1,0 +1,13 @@
+.venv
+.env
+*.json
+*.db*
+*.pyc
+*chroma*
+*.csv
+/data
+*test*
+/raw
+*.ipynb
+notebook.ipynb
+.vscode
