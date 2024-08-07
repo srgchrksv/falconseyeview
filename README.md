@@ -1,6 +1,8 @@
 ### You 🦅 data exporer
 # FalconsEyeView by thefalconian team 
-Submission for the Falcon Hackathon organized by AI71 and LABLAB.AI
+Submission* for the Falcon Hackathon organized by AI71 and LABLAB.AI
+
+**Should be one, didnt submitted.*
 
 ## Business value
 
@@ -33,3 +35,32 @@ Minimal features, data sources and requests quota
 More features, integrations and requests
 ### Enterprise $$
 Custom tailored solutions
+
+
+
+### To run the POC webapp:
+
+Set .env file with environment variables
+```
+#for embeddings
+TOGETHER_API_KEY=
+
+#for falcon
+AI71_API_KEY=
+
+#for jupyter notebook to get datasets
+GOOGLE_MAPS_API_KEY=
+```
+Create and activate virtual environment.
+
+Install required packages with:
+```
+pip install -r requirements.txt
+```
+Use jupyter notebook to get datasets.
+
+For streamlit web app to run locally:
+```
+streamlit run app.py
+```
+

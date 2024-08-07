@@ -10,7 +10,7 @@ import plotly.express as px
 @st.cache_data
 def load(datasources_path, data, selected_column="rating"):
     df = (
-        pd.read_csv(f"{datasources_path}/{data}")
+        pd.read_parquet(f"{datasources_path}/{data}")
         if data
         else pd.DataFrame(
             {

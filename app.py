@@ -75,34 +75,35 @@ with st.sidebar:
         st.error(e)
 
 # RAG
-try:
-    # embeddings for rag
-    embeddings = TogetherEmbeddings(model="togethercomputer/m2-bert-80M-8k-retrieval",together_api_key=os.getenv('TOGETHER_API_KEY'))
-    db = Chroma(persist_directory="./chroma_db", embedding_function=embeddings)
-    retriever = db.as_retriever(
-        search_kwargs={"k": 2, "filter": {"query": selected_datasource}}
-    )
+if api_key:
+    try:
+        # embeddings for rag
+        embeddings = TogetherEmbeddings(model="togethercomputer/m2-bert-80M-8k-retrieval",together_api_key=os.getenv('TOGETHER_API_KEY'))
+        db = Chroma(persist_directory="./chroma_db", embedding_function=embeddings)
+        retriever = db.as_retriever(
+            search_kwargs={"k": 2, "filter": {"query": selected_datasource}}
+        )
 
-    prompt = prompt.get_prompt()
+        prompt = prompt.get_prompt()
 
-    def format_docs(docs):
-        return "\n\n".join(doc.page_content for doc in docs)
+        def format_docs(docs):
+            return "\n\n".join(doc.page_content for doc in docs)
 
-    rag_chain = (
-        {"context": retriever | format_docs, "question": RunnablePassthrough()}
-        | prompt
-        | llm
-        | StrOutputParser()
-    )
-except Exception as e:
-    st.error(e)
+        rag_chain = (
+            {"context": retriever | format_docs, "question": RunnablePassthrough()}
+            | prompt
+            | llm
+            | StrOutputParser()
+        )
+    except Exception as e:
+        st.error(e)
 
 try:
     # chat
     for msg in st.session_state.messages:
         st.chat_message(msg["role"]).write(msg["content"])
     if prompt := st.chat_input():
-        if api_key == "API_KEY":
+        if not api_key:
             st.error("Enter api key.")
             st.stop()
         if not selected_datasource:
