@@ -1,8 +1,8 @@
-### You 🦅 data exporer
+### Your 🦅 data exporer
 # FalconsEyeView by thefalconian team 
 Submission* for the Falcon Hackathon organized by AI71 and LABLAB.AI
 
-**Should be one, didnt submitted.*
+**Should be one, didnt submit.*
 
 ## Business value
 
