@@ -9,21 +9,21 @@ def LLM(api_key):
             "api_key": os.getenv("AI71_API_KEY", api_key),
             "model": "tiiuae/falcon-180B-chat",
         },
-        # "Meta-Llama 3.1 8B Instruct-Turbo": {
-        #     "base_url": "https://api.together.xyz/v1",
-        #     "api_key": os.getenv("TOGETHER_API_KEY", api_key),
-        #     "model": "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
-        # },
-        # "Gemma 2 9B": {
-        #     "base_url": "https://api.together.xyz/v1",
-        #     "api_key": os.getenv("TOGETHER_API_KEY", api_key),
-        #     "model": "google/gemma-2-9b-it",
-        # },
-        # "Mistral 7B v.0.3": {
-        #     "base_url": "https://api.together.xyz/v1",
-        #     "api_key": os.getenv("TOGETHER_API_KEY", api_key),
-        #     "model": "mistralai/Mistral-7B-Instruct-v0.3",
-        # },
+        "Meta-Llama 3.1 70B Instruct-Turbo": {
+            "base_url": "https://api.together.xyz/v1",
+            "api_key": os.getenv("TOGETHER_API_KEY", api_key),
+            "model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
+        },
+        "Gemma 2 9B": {
+            "base_url": "https://api.together.xyz/v1",
+            "api_key": os.getenv("TOGETHER_API_KEY", api_key),
+            "model": "google/gemma-2-9b-it",
+        },
+        "Mistral 7B v.0.3": {
+            "base_url": "https://api.together.xyz/v1",
+            "api_key": os.getenv("TOGETHER_API_KEY", api_key),
+            "model": "mistralai/Mistral-7B-Instruct-v0.3",
+        },
     }
 
     # Model selection dropdown
