@@ -3,14 +3,14 @@ import pandas as pd
 import numpy as np
 import pydeck as pdk
 from visualize.maputils import add_color_to_data
-import ast
+from utils.transform import sort_df
 import plotly.express as px
 
 
 @st.cache_data
 def load(datasources_path, data, selected_column="rating"):
     df = (
-        pd.read_parquet(f"{datasources_path}/{data}")
+        pd.read_csv(f"{datasources_path}/{data}")
         if data
         else pd.DataFrame(
             {
@@ -25,21 +25,12 @@ def load(datasources_path, data, selected_column="rating"):
     )
 
     elevation_scale = 10 if selected_column == "userRatingCount" else 300
-
+    
     if selected_column == "scaledUserRatingCount":
         df["scaledUserRatingCount"] = np.log(df["userRatingCount"])
-        selected_column = "scaledUserRatingCount"
-        sorted_df = (
-            df[["id", "rating", "scaledUserRatingCount", "types"]]
-            .sort_values(by=selected_column, ascending=False)
-            .reset_index(drop=True)
-        )
+        sorted_df = sort_df(df, selected_column, selected_column)
     else:
-        sorted_df = (
-            df[["id", "rating", "userRatingCount", "types"]]
-            .sort_values(by=selected_column, ascending=False)
-            .reset_index(drop=True)
-        )
+        sorted_df = sort_df(df, selected_column)
 
     add_color_to_data(df, selected_column, [255, 255, 0], [200, 255, 0], [0, 255, 0])
 
