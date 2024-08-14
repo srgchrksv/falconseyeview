@@ -81,7 +81,7 @@ if api_key:
         embeddings = TogetherEmbeddings(model="togethercomputer/m2-bert-80M-8k-retrieval",together_api_key=os.getenv('TOGETHER_API_KEY'))
         db = Chroma(persist_directory="./chroma_db", embedding_function=embeddings)
         retriever = db.as_retriever(
-            search_kwargs={"k": 4, "filter": {"query": selected_datasource}}
+            search_kwargs={"k": 7, "filter": {"query": selected_datasource}}
         )
 
         prompt = prompt.get_prompt()
